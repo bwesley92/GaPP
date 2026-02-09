@@ -10,11 +10,21 @@ import warnings
 warnings.warn = warn
 import sys as sys
 
-from gapp import gp, dgp, covariance
+from gapp import gp
+from gapp import dgp
+from gapp import covariance
 import pickle
 import numpy as np
 from numpy import array,concatenate,loadtxt,savetxt,zeros
+
+import matplotlib as mpl
+mpl.rcParams.update({
+    "text.usetex": False,
+    "font.family": "serif"
+})
+
 import matplotlib.pyplot as plt
+
 from matplotlib import rc
  
 if __name__=="__main__":
@@ -49,7 +59,7 @@ if __name__=="__main__":
     sighzrec = rec1[:,2]
     
     # ======= printing the reconstructed H(z) at the lowest point, i.e., zmin=0, and its relative uncertainty 
-    print 'z=', zrec[0], ' H0=', hzrec[0], ' sigH0=',  sighzrec[0], ' sigH0/H0 (%)=', (sighzrec[0]/hzrec[0])*100.
+    print('z=', zrec[0], ' H0=', hzrec[0], ' sigH0=',  sighzrec[0], ' sigH0/H0 (%)=', (sighzrec[0]/hzrec[0])*100.)
         
     # ========== saving the reconstructed hz and its derivatives
     savetxt("hz_rec.dat",rec1)
@@ -81,4 +91,4 @@ if __name__=="__main__":
     plt.show()
 
     # =========== saving the plot
-    fig.savefig(filename+'_reconst.png')
+    fig.savefig(filename + '_reconst.png')
